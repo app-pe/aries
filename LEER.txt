@@ -1,0 +1,5 @@
+////////////////////////////
+GESTION DE VERSIONES
+////////////////////////////
+27-09-19
+- SE AGREGO LA FUNCIONALIDAD JS PARA EL CARRITO DE COMPRAS Y LA GALERIA DE IMAGENES

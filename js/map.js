@@ -19,8 +19,16 @@ function addScript2(id) // Función que permite añadir <script src=https://maps
 
 window.onload = function () 
 {
-	addScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCJc4_1Am85ybGwB3T9Fk5PQR_05TPxCIE&callback=initMap"); // Se invoca a la función «addScript», cuando la página se ha cargado.
-	addScript2("contenedor"); // Se invoca a la función «addScript», cuando la página se ha cargado.
+	var chart ="";
+	chart += "<ul>";
+	chart += "<li>Item1</li>";
+	chart += "<li>Item2</li>";
+	chart += "</ul>";
+
+	document.getElementById("ltchart").innerHTML = chart;
+	//document.getElementById("demo").innerHTML = "Paragraph changed!";
+	//addScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCJc4_1Am85ybGwB3T9Fk5PQR_05TPxCIE&callback=initMap"); // Se invoca a la función «addScript», cuando la página se ha cargado.
+	//addScript2("contenedor"); // Se invoca a la función «addScript», cuando la página se ha cargado.
 	
 };
 
@@ -32,4 +40,7 @@ function getId(id) // Función que «retorna» el contexto de un elemento HTML, 
 {
 	return document.getElementById(id);
 }
+
+
+
 

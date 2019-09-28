@@ -117,20 +117,31 @@
             </div>
 
             <div id="cab1" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-              <div id="seccionProd"></div>
 
-              <!--<table class="table table-hover">
-                <thead>
-                  <tr>        
-                    <th scope="col">Producto</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Precio</th>
-                  </tr>
-                </thead>
-                <tbody id="cuerpo">
-                 
-                </tbody>
-              </table>           -->
+              <div class="card" id="prod1">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img src="img/cerveza/pilsen/pilsen1.jpg" class="card-img" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">      
+                      <div class="row">
+                        <h5 class="card-title" id="desProducto">Pilsen Callao, Pack 12 Latas, 355ml c/u</h5>
+                      </div>
+                      <div class="row">
+                        <p class="card-text" id="desPrecio">Precio: S/ 42</p>
+                      </div>
+                      <div class="form-group row">
+                        <input type='button' value='-' class='qtyminus' field='quantity' id="btnmenos" />
+                        <input type='text' name='quantity' value='1' class='qty' id="txtcant" style="width:30px;text-align: center;" />
+                        <input type='button' value='+' class='qtyplus mr-2' field='quantity' id="btnmas" />                        
+                        <button class="btn btn-danger btn-sm" type="submit" id="btnagregarCarrito">AGREGAR</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>             
 
 
             </div>
@@ -228,7 +239,23 @@
           </tr>
         </thead>
         <tbody id="mitabla">
-      
+        <!--  <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>-->
         </tbody>
       </table>
 
@@ -236,6 +263,11 @@
     </div>
 
   </div> <!-- container-fluid -->
+
+
+
+
+
 
     <!-- footer -->
     <div class="card-header text-center border-0 titulo1" style="background-color: #5D5452">
@@ -264,136 +296,17 @@
     </div>
 
 
+  
+  
+
+
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   
-    <script type="text/javascript">
-      // variables globales 
-      var chart ="";    
-      var numProd = 3;
-      var conta = 1;
-      var d="";
-
-      // json de datos
-      var datos = [
-            {
-            "producto": "Pilsen Callao, Pack 12 Latas, 355ml c/u",
-            "imagen": "pilsen1.jpg",
-            "precio": "S/25"
-            },
-            {
-            "producto": "Pilsen Callao, Pack 6 Botella, 355ml c/u",
-            "imagen": "pilsen2.jpg",
-            "precio": "S/35"
-            },
-            {
-            "producto": "Pilsen Callao, 1 Lata, 355ml",
-            "imagen": "pilsen3.jpg",
-            "precio": "S/3.50"
-            },
-            {
-            "producto": "Pilsen Callao, 1 Botella, 355ml",
-            "imagen": "pilsen4.jpg",
-            "precio": "S/5.50"
-            },
-            {
-            "producto": "Pilsen Callao, 1 Caja",
-            "imagen": "pilsen5.jpg",
-            "precio": "S/45"
-            }
-            ];
-          
-      // cargamos la funcion al inicio
-      window.onload = generar_galeria();
-
-      function generar_galeria() {
-        for(var i = 0; i < datos.length; i++){          
-
-chart += "<div class='card' id='prod"+i+"'>"+
-            "<div class='row'>"+
-              "<div class='col-md-4'>"+
-                //"<img src='img/cerveza/pilsen/pilsen"+i+".jpg' class='card-img' alt='...'>"+
-                "<img src='img/cerveza/pilsen/"+datos[i].imagen+"' class='card-img' alt='...'>"+
-              "</div>"+
-              "<div class='col-md-8'>"+
-                "<div class='card-body'>"+      
-                  "<div class='row'>"+
-                    "<h5 class='card-title' id='desProducto"+i+"'>"+datos[i].producto+"</h5>"+
-                  "</div>"+
-                  "<div class='row'>"+
-                    "<p class='card-text' id='desPrecio"+i+"'>"+datos[i].precio+"</p>"+
-                  "</div>"+
-                  "<div class='form-group row'>"+
-                    "<input type='button' value='-' class='qtyminus' field='quantity' id='btnmenos"+i+"' onclick='disminuirCantidad("+i+")' />"+
-                    "<input type='text' name='quantity' value='1' class='qty' id='txtcant"+i+"' style='width:30px;text-align: center;' />"+
-                    "<input type='button' value='+' class='qtyplus mr-2' field='quantity' id='btnmas"+i+"' onclick='aumentarCantidad("+i+")' />"+                        
-                    "<button class='btn btn-danger btn-sm' type='submit' id='btnagregarCarrito"+i+"' onclick='agregarCarrito("+i+")'>AGREGAR</button>"+
-                  "</div>"+
-                "</div>"+
-              "</div>"+
-            "</div>"+
-          "</div>";    
-
-        }   
-        document.getElementById("seccionProd").innerHTML = chart;    
-      }
-
-
-      function aumentarCantidad(n){      
-        
-        var valor = document.getElementById('txtcant'+n).value;
-        var suma = parseInt(valor) + parseInt(1);    
-        
-          if(conta < 20){
-            document.getElementById('txtcant'+n).value = suma;  
-            conta++;
-          }
-      }
-
-      function disminuirCantidad(n){      
-
-        var valor = document.getElementById('txtcant'+n).value;
-        var resta = parseInt(valor) - parseInt(1);      
-        
-          if(conta > 1){
-            document.getElementById('txtcant'+n).value = resta;  
-            conta--;
-          }
-      }
-
-      function agregarCarrito(n){
-        var suma = parseInt(n) + parseInt(1);  
-        // capturar valor de cantidad
-        var cantidad = document.getElementById('txtcant'+n).value;      
-        // capturar producto
-        var producto = document.getElementById('desProducto'+n);          
-        var showproducto = producto.innerHTML;      
-        // capturar precio para sumarlo al final y calcular el subtotal
-        var precio = document.getElementById('desPrecio'+n);
-        var showprecio = precio.innerHTML;
-        // hasta aqui tengo los valores independientes de cada producto, cantidad y precio cuando doy click en agregar
-
-        // ahora tengo que mostrar enuna tabla estos valores
-        d+= '<tr>'+
-         '<td>'+showproducto+'</td>'+
-         '<td>'+cantidad+'</td>'+
-         '<td>'+showprecio+'</td>'+
-         '</tr>';
-
-        var element = document.getElementById("mitabla");
-        element.innerHTML = d;
-       //alert(showproducto+" cantidad:"+cantidad+" precio:"+showprecio);
-       
-      }
-
-        
-
-    </script>
-
-
 
     <script type="text/javascript">
       $('.carousel').carousel({
@@ -401,7 +314,71 @@ chart += "<div class='card' id='prod"+i+"'>"+
       })
     </script>
 
+    <script>
+    // capturamos el evento click del boton +    
+    document.getElementById("btnmas").addEventListener("click", aumentarCantidad);
+    // capturamos el evento click del boton -
+    document.getElementById("btnmenos").addEventListener("click", disminuirCantidad);
+    // capturamos el evento click del boton Agregar
+    document.getElementById("btnagregarCarrito").addEventListener("click", agregarCarrito);
 
+    // variables globales
+    var conta = 1;
+
+    // funciones 
+    function aumentarCantidad() {      
+      var valor = document.getElementById("txtcant").value;
+      var suma = parseInt(valor) + parseInt(1);    
+    
+        if(conta < 20){
+          document.getElementById("txtcant").value = suma;  
+          conta++;
+        }
+    }
+
+    function disminuirCantidad() {      
+      var valor = document.getElementById("txtcant").value;
+      var resta = parseInt(valor) - parseInt(1);    
+    
+        if(conta > 1){
+          document.getElementById("txtcant").value = resta;  
+          conta--;
+        }
+    }
+
+    function agregarCarrito(){
+      // capturar valor de cantidad
+      var cantidad = document.getElementById("txtcant").value;      
+      // capturar producto
+      var producto = document.getElementById("desProducto");          
+      var showproducto = producto.innerHTML;      
+      // capturar precio para sumarlo al final y calcular el subtotal
+      var precio = document.getElementById("desPrecio");
+      var showprecio = precio.innerHTML;
+
+      var d = '';
+      var datos = [
+       {       
+       "producto": showproducto,
+       "precio": showprecio,
+       "cantidad": cantidad
+       }
+       ];          
+
+      for (var i = 0; i < datos.length; i++) {
+       d+= '<tr>'+
+       '<td>'+datos[i].producto+'</td>'+
+       '<td>'+datos[i].precio+'</td>'+
+       '<td>'+datos[i].cantidad+'</td>'+
+       '</tr>';
+       } 
+
+      var element = document.getElementById("mitabla");
+      element.innerHTML = d;
+    }
+
+
+    </script>
 
   </body>
 </html>
