@@ -344,23 +344,23 @@ chart += "<div class='card' id='prod"+i+"'>"+
 
       function aumentarCantidad(n){      
         
-        var valor = document.getElementById('txtcant'+n).value;
-        var suma = parseInt(valor) + parseInt(1);    
+        var valor = document.getElementById('txtcant'+n).value;       
         
-          if(conta < 20){
+          if(valor < 10){
+            var suma = parseInt(valor) + parseInt(1);    
             document.getElementById('txtcant'+n).value = suma;  
-            conta++;
+            //conta++;
           }
       }
 
       function disminuirCantidad(n){      
 
-        var valor = document.getElementById('txtcant'+n).value;
-        var resta = parseInt(valor) - parseInt(1);      
+        var valor = document.getElementById('txtcant'+n).value;      
         
-          if(conta > 1){
+          if(valor > 1){
+            var resta = parseInt(valor) - parseInt(1);      
             document.getElementById('txtcant'+n).value = resta;  
-            conta--;
+            //conta--;
           }
       }
 
