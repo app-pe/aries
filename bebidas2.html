@@ -218,6 +218,7 @@
       <!-- seccion de información del carrito -->
       <div class="container">
         <h5 class="card-title text-center" id="desProducto">Carrito de compras</h5>
+      
       <table class="table table-sm">
         <thead>
           <tr>
@@ -230,6 +231,13 @@
         <tbody id="mitabla">
       
         </tbody>
+        <tfoot>
+            <tr>
+              <td></td>
+              <td class="font-weight-bold">Subtotal</td>
+              <td id="subtotal" class="font-weight-bold"></td>
+            </tr>
+          </tfoot>
       </table>
 
     </div>
@@ -276,33 +284,34 @@
       var numProd = 3;
       var conta = 1;
       var d="";
+      var sub = "0";
 
       // json de datos
       var datos = [
             {
             "producto": "Pilsen Callao, Pack 12 Latas, 355ml c/u",
             "imagen": "pilsen1.jpg",
-            "precio": "S/25"
+            "precio": "25"
             },
             {
             "producto": "Pilsen Callao, Pack 6 Botella, 355ml c/u",
             "imagen": "pilsen2.jpg",
-            "precio": "S/35"
+            "precio": "35"
             },
             {
             "producto": "Pilsen Callao, 1 Lata, 355ml",
             "imagen": "pilsen3.jpg",
-            "precio": "S/3.50"
+            "precio": "3.50"
             },
             {
             "producto": "Pilsen Callao, 1 Botella, 355ml",
             "imagen": "pilsen4.jpg",
-            "precio": "S/5.50"
+            "precio": "5.50"
             },
             {
             "producto": "Pilsen Callao, 1 Caja",
             "imagen": "pilsen5.jpg",
-            "precio": "S/45"
+            "precio": "45"
             }
             ];
           
@@ -374,17 +383,23 @@ chart += "<div class='card' id='prod"+i+"'>"+
         // capturar precio para sumarlo al final y calcular el subtotal
         var precio = document.getElementById('desPrecio'+n);
         var showprecio = precio.innerHTML;
+
+        var precioxcant = cantidad*showprecio;        
         // hasta aqui tengo los valores independientes de cada producto, cantidad y precio cuando doy click en agregar
 
         // ahora tengo que mostrar enuna tabla estos valores
         d+= '<tr>'+
          '<td>'+showproducto+'</td>'+
          '<td>'+cantidad+'</td>'+
-         '<td>'+showprecio+'</td>'+
+         '<td>'+'S/ '+precioxcant+'</td>'+
          '</tr>';
 
         var element = document.getElementById("mitabla");
         element.innerHTML = d;
+
+        sub = parseFloat(sub) + parseFloat(precioxcant); 
+        var element2 = document.getElementById("subtotal");
+        element2.innerHTML = "S/ "+sub;
        //alert(showproducto+" cantidad:"+cantidad+" precio:"+showprecio);
        
       }
