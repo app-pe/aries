@@ -216,9 +216,18 @@
     </div> <!-- row -->
     <div class="row mt-2">      
       <!-- seccion de información del carrito -->
-      <div class="container">
+      <div class="container" align="center">
         <h5 class="card-title text-center" id="desProducto">Carrito de compras</h5>
-      
+        <div class="col-lg-4 mb-2">
+        <label>Seleccione un medio de pago</label>
+        <select class="form-control" id="mediopago">          
+          <option value="1">EFECTIVO</option>
+          <option value="2">BCP</option>
+          <option value="3">BBVA</option>
+          <option value="4">YAPE</option>
+          <option value="5">TUNKI</option>
+        </select>
+        </div>
       <table class="table table-sm">
         <thead>
           <tr>
@@ -247,13 +256,13 @@
 
     <!-- footer -->
     <div class="card-header text-center border-0 titulo1" style="background-color: #5D5452">
-        <h5 class="slogan">Arma tu pack y haz tu pedido por wasap</h5>
+        <h5 class="slogan">Arma tu pack y dale click al botón de whatsapp</h5>
     </div>
       
     <div class="card-body text-center my-auto" style="height: 60px">
-       <div class="titulo2">PEDIDOS
-        <a href="https://goo.gl/8ukX7Y">
-        <img src="img/wasap.jpg" class="center-block img-responsive" alt="" width="30" height="30"> 
+       <div class="titulo2">ENVIAR PEDIDO
+        <a href="#" id="enlace">
+        <img src="img/wasap.jpg" class="center-block img-responsive" alt="" width="30" height="30" onclick="enviarPedido()"> 
         </a>    
        </div>  
     </div>
@@ -285,6 +294,7 @@
       var conta = 1;
       var d="";
       var sub = "0";
+      var listadoProductoCantidad ="";
 
       // json de datos
       var datos = [
@@ -299,17 +309,17 @@
             "precio": "35"
             },
             {
-            "producto": "Pilsen Callao, 1 Lata, 355ml",
+            "producto": "Pilsen Callao, Lata, 355ml",
             "imagen": "pilsen3.jpg",
             "precio": "3.50"
             },
             {
-            "producto": "Pilsen Callao, 1 Botella, 355ml",
+            "producto": "Pilsen Callao, Botella, 355ml",
             "imagen": "pilsen4.jpg",
             "precio": "5.50"
             },
             {
-            "producto": "Pilsen Callao, 1 Caja",
+            "producto": "Pilsen Callao, Caja",
             "imagen": "pilsen5.jpg",
             "precio": "45"
             }
@@ -333,6 +343,7 @@ chart += "<div class='card' id='prod"+i+"'>"+
                     "<h5 class='card-title' id='desProducto"+i+"'>"+datos[i].producto+"</h5>"+
                   "</div>"+
                   "<div class='row'>"+
+                    "<p class='card-text'>Precio: S/&nbsp;</p>"+
                     "<p class='card-text' id='desPrecio"+i+"'>"+datos[i].precio+"</p>"+
                   "</div>"+
                   "<div class='form-group row'>"+
@@ -379,7 +390,9 @@ chart += "<div class='card' id='prod"+i+"'>"+
         var cantidad = document.getElementById('txtcant'+n).value;      
         // capturar producto
         var producto = document.getElementById('desProducto'+n);          
-        var showproducto = producto.innerHTML;      
+        var showproducto = producto.innerHTML;   
+
+        listadoProductoCantidad += "[Producto: "+showproducto+" - Cantidad: "+ cantidad+"] ";   
         // capturar precio para sumarlo al final y calcular el subtotal
         var precio = document.getElementById('desPrecio'+n);
         var showprecio = precio.innerHTML;
@@ -404,7 +417,18 @@ chart += "<div class='card' id='prod"+i+"'>"+
        
       }
 
-        
+      function enviarPedido(){
+        // enviar listado de producto, cantidad y subtotal por wasap
+        /* Para obtener el texto */
+        var combo = document.getElementById("mediopago");
+        var mpseleccionado = combo.options[combo.selectedIndex].text;        
+
+        var url = document.getElementById('enlace');
+        var datos = "Pedido: "+listadoProductoCantidad+"| Total a Pagar: S/ "+sub+" | Medio de Pago: "+mpseleccionado;
+        var baseUrl = "https://api.whatsapp.com/send?phone=51999781083&text="+datos;
+        console.log(url);
+        url.setAttribute('href',baseUrl);
+      }
 
     </script>
 
