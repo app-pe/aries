@@ -22,11 +22,70 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 <body>
-	<form>
-	  <div class="form-group">
-	    <label for="exampleFormControlFile1">Example file input</label>
-	    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-	  </div>
-	</form>
+    <div class="container">
+        
+        <div class="col-lg-6 mt-3">
+
+        <h5>Registrar Productos</h5>  
+        <form id="myform">
+        <div class="form-group">
+        <input id="tbDescripcion" class="form-control form-control-sm" type="text" placeholder="ingresar descripción">
+        </div>
+        <div class="form-group">
+        <input id="tbPrecio" class="form-control form-control-sm" type="text" placeholder="ingresar precio">   
+        </div>
+        <div class="form-group">
+	    <input type="file" class="form-control-file form-control-sm" id="subirImg">
+        </div>
+        <div class="form-group">
+            <button id="btnRegistrar" type="button" class="btn btn-danger btn-sm">Registrar</button>
+        </div>
+        </form>
+        </div>
+
+
+	   
+
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("subirImg").addEventListener("change", capturarImagen);        
+        document.getElementById("btnRegistrar").addEventListener("click", registrarProducto);
+
+        function capturarImagen(e){            
+            //console.log(e); metadatos de la imagen
+            var file = e.target.files[0];
+            var url = "img/cigarros/"+file.name;
+            var fgraficos = document.getElementById("subirImg");
+
+            var formdata = new FormData();
+            formdata.append('file',file);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST',url);
+            xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+            xhr.send(formdata);
+            xhr.onreadystatechange = function(){
+                 if(xhr.readyState != 4) return;
+                 if(xhr.status != 200){
+                     alert("Status: " + xhr.status);
+                 }else{
+                     alert(xhr.responseText);
+                 }
+             };
+             
+
+            //console.log(file);
+        }
+
+
+        function registrarProducto(){
+            var img = new Image();
+            var descripción = document.getElementById("tbDescripcion").value;
+            var precio = document.getElementById("tbPrecio").value;
+            img.save();
+            img.url();
+        }
+    </script>
 </body>
 </html>
